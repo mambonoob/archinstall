@@ -43,9 +43,9 @@ pacstrap -c /mnt base $kern $kern-headers $texted $cpuven-ucode linux-firmware $
 
 echo "Generating fstab..."
 genfstab -U /mnt >> /mnt/etc/fstab
-cp ~/arch-install-stage2.sh /mnt/
-chmod 777 /mnt/arch-install-stage2.sh
-echo "Stage1 complete. Now, type /arch-install-stage2.sh to finish the installation."
+cp ~/stage2_archinstall.sh /mnt/
+chmod 777 /mnt/stage2_archinstall.sh
+echo "Stage1 complete. Now, type /stage2_archinstall.sh to finish the installation."
 arch-chroot /mnt
 
 
