@@ -39,7 +39,7 @@ if [ $useryn = y ]; then
     echo "Creating user..."
     useradd -mG users,wheel,video,audio,input,sys,network,lp,storage,power $username
     echo "Password for the new user?"
-    passwd
+    passwd $username
     sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/g' /etc/sudoers
 elif [ $useryn = n ]; then
     echo " "
