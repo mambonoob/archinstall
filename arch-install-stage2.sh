@@ -59,8 +59,31 @@ chwifi () {
     echo "Enable wifi daemon (iwd/iwctl)? y or n"
     read whichwifi
 }
+gdriver () {
+    echo "Which graphics driver would you like to install? (n)vidia, (i)ntel, or (a)mdgpu?"
+    read gpuven
+}
 echo "Installing extra packages!"
+lts=linux-lts
 if [ $xorg = y ]; then
+    gdriver
+    if [ $gpuven = n ]; then
+	    echo "Installing NVIDIA driver..."
+	    pacman -S nvidia-utils
+	    if pacman -Qs $lts > /dev/null; then
+		    pacman -S nvidia-lts
+	    else
+		    pacman -S nvidia
+	    fi
+    elif [ $gpuven = i ]; then
+	    echo "Installing Intel driver..."
+	    pacman -S mesa vulkan-intel xf86-video-intel
+    elif [ $gpuven = a]; then
+	    echo "Installing AMD driver..."
+	    pacman -S mesa vulkan-radeon xf86-video-amdgpu
+    else
+	    gdriver
+    fi
     echo "Installing xorg..."
     pacman -S xorg xorg-xinit
 elif [ $xorg = n ]; then

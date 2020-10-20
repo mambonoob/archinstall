@@ -39,7 +39,7 @@ read cpuven
 echo "Enter any extra packages you would like to install. Seperate by spaces."
 read extra
 echo "Good! Running pacstrap to install the system..."
-pacstrap -c /mnt base $kern $texted $cpuven-ucode linux-firmware $extra man-db man-pages texinfo grub efibootmgr dosfstools mtools os-prober ntfs-3g base-devel
+pacstrap -c /mnt base $kern $kern-headers $texted $cpuven-ucode linux-firmware $extra man-db man-pages texinfo grub efibootmgr dosfstools mtools os-prober ntfs-3g base-devel
 
 echo "Generating fstab..."
 genfstab -U /mnt >> /mnt/etc/fstab
